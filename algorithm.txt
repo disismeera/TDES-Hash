@@ -1,0 +1,18 @@
+Step 1: Begin with a message to be hashed, M.
+Step 2: Initialize variables A, B, C to predetermined values. These values can be chosen randomly or based on a specific seed value.
+Step 3: Divide M into blocks, each block being 512 bits in length. If the length of M is not a multiple of 512, add padding to the final block until it is 512 bits long.
+Step 4: Generate a random 64-bit key, K, to be used for Triple DES encryption.
+Step 5: For each block, perform the following operations:
+
+    Encrypt the block using Triple DES with key K.
+    XOR A with the encrypted block. This operation combines the bits of A and the encrypted block, resulting in a new value for A.
+    XOR B with the next 256 bits of the block. This operation combines the bits of B and the next 256 bits of the block, resulting in a new value for B.
+    XOR C with the next 256 bits of the block. This operation combines the bits of C and the next 256 bits of the block, resulting in a new value for C.
+    Hash A and B using MD5 to create a new value for A.
+    Hash B and C using SHA to create a new value for B.
+    Hash A and C using SHA to create a new value for C.
+    Step 6: Concatenate A, B, and C to create the hash value, H. This operation combines the values of A, B, and C into a single string of bits.
+    Step 7: Append a 64-bit salt value to H to create the final hash, HS. The salt value is a randomly generated string of bits that is unique to each message being hashed. It is appended to the end of H to further increase the security of the algorithm.
+    Step 8: Encrypt the final hash value, HS, using Triple DES with key K. This step adds confidentiality to the algorithm by ensuring that the final hash value is only readable by someone with the correct key.
+    Step 9: Compare the encrypted final hash value to a predetermined value. If the two values do not match, the message is considered invalid. This step adds integrity to the algorithm by ensuring that the message has not been modified during transmission.
+    Step 10: Append a digital signature to the message. The digital signature is a hash value that is encrypted with a private key and can be verified with a corresponding public key. This step adds authenticity to the algorithm by ensuring that the message was sent by the claimed sender and has not been tampered with.
