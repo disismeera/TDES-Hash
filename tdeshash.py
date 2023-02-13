@@ -48,3 +48,6 @@ def generate_hash(message, A, B, C, key):
     HS = k.encrypt(HS)
 
     return HS
+
+
+#Note: I have used the pyDes library for Triple DES encryption and the hashlib library for MD5 and SHA256 hash functions. You may need to install these libraries if you don't have them already installed.
